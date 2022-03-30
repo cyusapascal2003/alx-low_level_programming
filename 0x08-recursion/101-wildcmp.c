@@ -7,10 +7,10 @@
  * @s2: string
  * @a: int
  * @b: int
- * @wildUsed: int
+ * @wildcmp: int
  * Return: Always 0.
  */
-int checker(char *s1, char *s2, int a, int b, int wildUsed);
+int checker(char *s1, char *s2, int a, int b, int wildcmp);
 int wildcmp(char *s1, char *s2)
 {
 return (checker(s1, s2, 0, 0, -1));
@@ -38,10 +38,10 @@ return (0);
  * @s2: string
  * @a: int
  * @b: int
- * @wildUsed: int
+ * @wildcmp: int
  * Return: Always 0.
  */
-int checker(char *s1, char *s2, int a, int b, int wildUsed)
+int checker(char *s1, char *s2, int a, int b, int wildcmp)
 {
 
 if (s1[a] != '\0')
@@ -60,12 +60,12 @@ if (s1[a] != '\0')
 			return (checker(s1, s2, a + 1, b + 1, b));
 	}
 	else if ((s1[a] == s2[b]) || (s2[b] == '*' && s2[b + 1] == s1[a + 1]))
-		return (checker(s1, s2, a + 1, b + 1, wildUsed));
+		return (checker(s1, s2, a + 1, b + 1, wildcmp));
 
-	if (wildUsed == -1)
+	if (wildcmp == -1)
 		return (0);
 
-	return (checker(s1, s2, a, wildUsed, wildUsed));
+	return (checker(s1, s2, a, wildcmp, wildcmp));
 
 }
 if (s2[b] != '\0')
